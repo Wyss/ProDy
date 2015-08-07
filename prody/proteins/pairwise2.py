@@ -54,7 +54,7 @@ Some examples:
     # Identical characters are given 1 point.  No points are deducted
     # for mismatches or gaps.
     >>> for a in pairwise2.align.globalxx("ACCGT", "ACG"):
-    ...     print format_alignment(*a)
+    ...     print(format_alignment(*a))
     ACCGT
     |||||
     AC-G-
@@ -69,7 +69,7 @@ Some examples:
     
     # Same thing as before, but with a local alignment.
     >>> for a in pairwise2.align.localxx("ACCGT", "ACG"):
-    ...     print format_alignment(*a)
+    ...     print(format_alignment(*a))
     ACCGT
     ||||
     AC-G-
@@ -84,7 +84,7 @@ Some examples:
     # Do a global alignment.  Identical characters are given 2 points,
     # 1 point is deducted for each non-identical character.
     >>> for a in pairwise2.align.globalmx("ACCGT", "ACG", 2, -1):
-    ...     print format_alignment(*a)
+    ...     print(format_alignment(*a))
     ACCGT
     |||||
     AC-G-
@@ -99,7 +99,7 @@ Some examples:
     # Same as above, except now 0.5 points are deducted when opening a
     # gap, and 0.1 points are deducted when extending it.
     >>> for a in pairwise2.align.globalms("ACCGT", "ACG", 2, -1, -.5, -.1):
-    ...     print format_alignment(*a)
+    ...     print(format_alignment(*a))
     ACCGT
     |||||
     AC-G-
@@ -117,7 +117,7 @@ Biopython ( Bio.SubsMat -> MatrixInfo ).
     >>> from Bio.SubsMat import MatrixInfo as matlist
     >>> matrix = matlist.blosum62
     >>> for a in pairwise2.align.globaldx("KEVLA", "EVL", matrix):
-    ...     print format_alignment(*a)
+    ...     print(format_alignment(*a))
     KEVLA
     |||||
     -EVL-
@@ -204,11 +204,11 @@ should return a gap penalty."""),
                         name[:-2], name[-2], name[-1]
             try:
                 match_args, match_doc = self.match2args[match_type]
-            except KeyError, x:
+            except KeyError:
                 raise AttributeError("unknown match type %r" % match_type)
             try:
                 penalty_args, penalty_doc = self.penalty2args[penalty_type]
-            except KeyError, x:
+            except KeyError:
                 raise AttributeError("unknown penalty type %r" % penalty_type)
 
             # Now get the names of the parameters to this function.
@@ -327,8 +327,8 @@ def _align(sequenceA, sequenceB, match_fn, gap_A_fn, gap_B_fn,
             score_only)
     score_matrix, trace_matrix = x
 
-    #print "SCORE"; print_matrix(score_matrix)
-    #print "TRACEBACK"; print_matrix(trace_matrix)
+    #print("SCORE"); print_matrix(score_matrix)
+    #print("TRACEBACK"); print_matrix(trace_matrix)
          
     # Look for the proper starting point.  Get a list of all possible
     # starting points.
@@ -828,8 +828,8 @@ def print_matrix(matrix):
     ndigits = map(max, matrixT)
     for i in range(len(matrix)):
         #Using string formatting trick to add leading spaces,
-        print " ".join("%*s " % (ndigits[j], matrix[i][j]) \
-                       for j in range(len(matrix[i])))
+        print(" ".join("%*s " % (ndigits[j], matrix[i][j]) \
+                       for j in range(len(matrix[i]))))
 
 def format_alignment(align1, align2, score, begin, end):
     """format_alignment(align1, align2, score, begin, end) -> string
@@ -857,10 +857,10 @@ except ImportError:
 
 def _test():
     """Run the module's doctests (PRIVATE)."""
-    print "Running doctests..."
+    print("Running doctests...")
     import doctest
     doctest.testmod(optionflags=doctest.IGNORE_EXCEPTION_DETAIL)
-    print "Done"
+    print("Done")
 
 if __name__ == "__main__":
     _test()
