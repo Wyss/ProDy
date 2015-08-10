@@ -150,7 +150,12 @@ def writePSF(filename, atoms):
         raise ValueError('atom names are not set')
 
     if types is None:
-        atomtypes = zeros(n_atoms, array(['a']).dtype.char + '1')
+        types = zeros(n_atoms, array(['a']).dtype.char + '1')
+
+    if charges is None:
+        charges = zeros(n_atoms, float)
+    if masses is None:
+        masses = zeros(n_atoms, int)
 
     long_fields = array([len(tp) for tp in types]).max() > 4
 
