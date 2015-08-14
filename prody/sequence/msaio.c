@@ -94,11 +94,14 @@ static PyObject *parseFasta(PyObject *self, PyObject *args) {
 
     char *filename;
     PyArrayObject *msa;
-
+    PyObject *labels = PyList_New(0);
+    PyObject *mapping = PyDict_New();
+    
     if (!PyArg_ParseTuple(args, "sO", &filename, &msa))
         return NULL;
 
-    PyObject *labels = PyList_New(0), *mapping = PyDict_New();
+
+
     if (!labels || !mapping)
         return PyErr_NoMemory();
 
